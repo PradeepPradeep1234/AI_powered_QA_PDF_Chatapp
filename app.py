@@ -4,11 +4,14 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import requests
+from huggingface_hub import login
+login(token=st.secrets["HF_TOKEN"])
 
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 # Load embedding model
-embed_model = SentenceTransformer("all-MiniLM-L6-v2")
+embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
 
 # Helper: Read PDF and split into chunks
 def read_pdf_chunks(pdf_file, chunk_size=300):
