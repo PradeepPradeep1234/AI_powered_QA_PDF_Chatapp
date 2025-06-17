@@ -1,15 +1,12 @@
 import os
 import streamlit as st
-from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import requests
 
-# Load API Key from .env
-load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 # Load embedding model
 embed_model = SentenceTransformer("all-MiniLM-L6-v2")
